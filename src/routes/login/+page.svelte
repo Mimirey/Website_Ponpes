@@ -1,5 +1,13 @@
 <script>
   import LoginForm from '$lib/components/LoginForm.svelte';
+  import {goto} from '$app/navigation';
+  import { enhance } from '$app/forms';
+
+
+export let form;
+$: if (form?.success && form?.redirect) {
+    goto(form.redirect);
+  }
 </script>
 
 <div class="login-page">
@@ -10,7 +18,7 @@
     
     <h2>Selamat Datang</h2>
     <p>Semangat buat hari ini ya..</p>
-    <LoginForm />
+    <LoginForm {form} enhance={enhance} />
   </div>
 </div>
 
