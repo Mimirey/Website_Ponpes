@@ -31,6 +31,8 @@ export const actions ={
       cookies.set('token', user.U_LOGIN_TOKEN, {
         path: '/',
         httpOnly: true,
+        sameSite: 'lax',
+        secure: false,
         maxAge: 60 * 60 * 24 
       });
 
@@ -55,3 +57,4 @@ export const actions ={
     }
   }
 }
+
