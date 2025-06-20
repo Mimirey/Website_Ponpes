@@ -3,11 +3,10 @@
   import {goto} from '$app/navigation';
   import { enhance } from '$app/forms';
 
-
-export let form;
-$: if (form?.success && form?.redirect) {
-    goto(form.redirect);
-  }
+  export let form;
+  $: if (form?.success && form?.redirect) {
+      goto(form.redirect);
+    }
 </script>
 
 <div class="login-page">

@@ -1,20 +1,20 @@
 <script>
 	import { onDestroy, onMount } from "svelte";
 
-    export let items= [];
+    export let image= '';
     let currentIndex=0;
 
     const intervalTime=3000;
     let interval;
 
-    export let kegiatan=[];
+    export let title='';
 
     function prev() {
-        currentIndex=(currentIndex-1 + items.length)%items.length;
+        currentIndex=(currentIndex-1 + image.length)%image.length;
     }
 
     function next() {
-        currentIndex=(currentIndex+1)% items.length;
+        currentIndex=(currentIndex+1)%image.length;
     }
 
     onMount(()=>{
@@ -31,11 +31,11 @@
     <button on:click={prev}>&lt;</button>
 
     <div class="carousel-item">
-        {#if items.length>0}
-        <img src={items[currentIndex]} alt=""/>
+        {#if image}
+        <img src={image} alt=""/>
 
          <div class="overlay-text">
-          <h2>{kegiatan[currentIndex]}</h2>
+          <h2>{title}</h2>
         </div>
         {:else}
         <p>No items to display</p>
