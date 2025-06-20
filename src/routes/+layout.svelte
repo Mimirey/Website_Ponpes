@@ -1,7 +1,7 @@
 <script>
     import Navbar from "$lib/components/Navbar.svelte";
     import '../app.css'
-     import { Toaster } from 'svelte-french-toast';
+     import { Toaster, toast } from 'svelte-sonner';
      import { page } from '$app/stores';
 </script>
 
