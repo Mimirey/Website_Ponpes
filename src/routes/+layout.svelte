@@ -6,7 +6,8 @@
 </script>
 
 <Toaster/>
+
+<slot />
 {#if $page.url.pathname !== '/login'}
   <Navbar />
 {/if}
-<slot />
