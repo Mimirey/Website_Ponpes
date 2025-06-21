@@ -1,12 +1,24 @@
 <script>
     import Carousel from "$lib/components/Carousel.svelte";
     import MenuLaporan from "$lib/components/MenuLaporan.svelte";
-	// import { data } from "$lib/data";
+	import HalfPopUp from "$lib/components/HalfPopUp.svelte";
     export let data;
 
+    let showPopup=false;
+    let popupData= null;
+
+   function openPopup(item) {
+	popupData = item.detail;
+	showPopup = true;
+    }
+
+    function closePopup() {
+        showPopup = false;
+    }
 </script>
 
-    <Carousel items={data.announcements}/>
+    <Carousel items={data.announcements} on:itemClick={openPopup}/>
+    <HalfPopUp isOpen={showPopup} data={popupData} onClose={closePopup} />
 
     <div class="opsiLaporan">
 <MenuLaporan head="Harian" link="/laporan/harian"/>

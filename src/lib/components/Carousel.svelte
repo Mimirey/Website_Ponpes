@@ -1,5 +1,6 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	// let { image = '', title = '' } = $props();
     export let items= [];
@@ -24,12 +25,23 @@
 	onDestroy(() => {
 		clearInterval(interval);
 	});
+
+	const dispatch = createEventDispatcher();
+
+  function handleClick(item) {
+    dispatch('itemClick', item); 
+  }
 </script>
 
 <div class="carousel">
-	<button onclick={prev}>&lt;</button>
+	<button on:click={prev}>&lt;</button>
 
-	<div class="carousel-item">
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<div 
+	class="carousel-item" on:click={()=>handleClick(items[currentIndex])}
+	role="button"
+  	tabindex="0">
+
 		{#if items.length > 0}
 			<img src={items[currentIndex].IMAGE_URL} alt="gambar" />
 
@@ -41,5 +53,5 @@
 		{/if}
 	</div>
 
-	<button onclick={next}>&gt;</button>
+	<button on:click={next}>&gt;</button>
 </div>
