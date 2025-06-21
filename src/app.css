@@ -88,18 +88,21 @@ form button:hover {
   gap: 1rem;
   position: relative;
   overflow: hidden;
-  flex-wrap: wrap;
+  width: 100%;
+  border: 2px solid;
+  margin-top: 2rem;
+  padding: 5rem;
 }
 
 .carousel-item {
-  position: relative;
-  max-width: 100%;
+
+ 
   transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 .carousel-item img {
   width: 100%;
-  width:225px;
+  
   height: auto;
   object-fit: cover;
   border-radius: 12px;
@@ -113,12 +116,11 @@ form button:hover {
 }
 
 .overlay-text {
+  
   position: absolute;
-  bottom: 1rem;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 575px;
+  transform: translate(-50%, -50%); 
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   padding: 0.5rem 1rem;
@@ -126,6 +128,8 @@ form button:hover {
   color: #fff;
   animation: fadeIn 0.5s ease-in-out;
   text-align: center;
+  width: 90%;
+  max-width: 900px;
 }
 
 .overlay-text h2 {
@@ -134,15 +138,17 @@ form button:hover {
 }
 
 /* ========== BUTTON ========== */
-button {
-  background: #bec7d0c3;
+.carousel button {
+  z-index: 2; 
+  position: relative; 
+  background: #cfd8dc; 
   border: none;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  border-radius: 6px;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
-  transition: background 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 7rem;
+  margin-right:7rem ;
 }
 
 button:hover {

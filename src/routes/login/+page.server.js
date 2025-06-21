@@ -1,5 +1,7 @@
 export const actions = {
-	default: async ({ request, cookies }) => {
+	default: async (event) => {
+		const { request, cookies, fetch } = event;
+
 		try {
 			const formData = await request.formData();
 			const username = formData.get('username');

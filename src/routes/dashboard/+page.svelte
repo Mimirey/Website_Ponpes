@@ -1,13 +1,12 @@
 <script>
     import Carousel from "$lib/components/Carousel.svelte";
     import MenuLaporan from "$lib/components/MenuLaporan.svelte";
-	import { data } from "$lib/data";
+	// import { data } from "$lib/data";
+    export let data;
 
 </script>
 
-{#each data.announcements as item}
-    <Carousel image={item.IMAGE_URL} title={item.TITLE}/>
-{/each}
+    <Carousel items={data.announcements}/>
 
     <div class="opsiLaporan">
 <MenuLaporan head="Harian" link="/laporan/harian"/>
