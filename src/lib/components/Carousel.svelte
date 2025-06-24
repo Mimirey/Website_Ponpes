@@ -31,6 +31,9 @@
   function handleClick(item) {
     dispatch('itemClick', item); 
   }
+
+  $: console.log('index:', currentIndex, 'image:', items[currentIndex]?.IMAGE_URL);
+
 </script>
 
 <div class="carousel">
