@@ -1,6 +1,5 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	// const dispatch= createEventDispatcher();
 
 	let selectedMonth = $state(new Date().toISOString().slice(0, 7));
 	let { change } = $props();

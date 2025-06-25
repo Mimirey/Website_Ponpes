@@ -1,22 +1,20 @@
 <script>
-	let { reports = [] } = $props();
+	
 
 	import { goto } from '$app/navigation';
 
-	function bukaDetail(id) {
-		goto(`/laporanDetail/${id}`);
-	}
+	export let onClick = () => {};
+	export let reports = [];
 </script>
 
+{#each reports as item (item.SH_ID)}
 <div class="report-list">
-	{#each reports as report (report.id)}
-		<div class="report-card">
-			<div class="icon">📄</div>
-			<div class="report-content">
-				<strong>{report.judul}</strong>
-				<p>{report.tanggal}</p>
-				<button onclick={() => bukaDetail(report.id)}>Klik disini</button>
-			</div>
-		</div>
-	{/each}
+	
+		 <div class="report-card">
+    	<p><strong>Tanggal:</strong> {item.SH_DATE}</p>
+    	<p><strong>Waktu:</strong> {item.SH_TIME}</p>
+    	<button on:click={() => onClick(item.SH_DATE, item.SH_TIME)}>Lihat Detail</button>
+  </div>
+	
 </div>
+{/each}
