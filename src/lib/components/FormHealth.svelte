@@ -13,7 +13,7 @@
   {#if laporan.length > 0}
     {#each laporan as item (item.SH_ID)}
       <div class="laporan-block">
-        <h2>Detail Laporan Kesehatan</h2>
+        <h2>Laporan Kesehatan</h2>
         <p><strong>Tanggal:</strong> {item.SH_DATE}</p>
         <p><strong>Suhu:</strong> {item.BODY_TEMPERATURE} °C</p>
         <p><strong>SPO2:</strong> {item.SPO2} %</p>

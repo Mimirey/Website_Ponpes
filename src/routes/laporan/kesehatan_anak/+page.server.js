@@ -13,19 +13,19 @@ export async function load({ url, cookies, fetch }) {
 
   const s_id = user.id;
 //   const s_id = url.searchParams.get('S_ID') ?? user.id; 
-  const date = url.searchParams.get('date');
-  const time = url.searchParams.get('time');
+  // const date = url.searchParams.get('date');
+  // const time = url.searchParams.get('time');
 
   
   console.log('➡️ S_ID:', s_id);
-  console.log('➡️ Date:', date);
-  console.log('➡️ Time:', time);
+  // console.log('➡️ Date:', date);
+  // console.log('➡️ Time:', time);
 
-  if (!s_id || !date || !time) {
-    return { error: 'Parameter tidak lengkap.' };
-  }
+  // if (!s_id || !date || !time) {
+  //   return { error: 'Parameter tidak lengkap.' };
+  // }
 
-  const res = await fetch(`https://admin.al-achsaniyyah.id/api/student-health?S_ID=118&date=2025-05-09`, {
+  const res = await fetch(`https://admin.al-achsaniyyah.id/api/student-health?S_ID=118`, {
     headers: {
       'Talentaku-token': token,
     }
@@ -36,15 +36,13 @@ export async function load({ url, cookies, fetch }) {
 
 //    console.log('📦 Payload length:', payload.length);
 //   console.log('📦 Payload data:', JSON.stringify(payload, null, 2));
-
-const detail = payload.filter(
-  item => item.SH_TIME?.toUpperCase() === time && item.SH_DATE === date
-);
+const detail = json.PAYLOAD ?? [];
+// const detail = payload.filter(
+//   item => item.SH_TIME?.toUpperCase() === time && item.SH_DATE === date
+// );
 console.log('✅ Detail ditemukan:', detail);
 
   return {
     detail, 
-    date,
-    time
   };
 }
