@@ -20,6 +20,7 @@
     <Carousel items={data.announcements} on:itemClick={openPopup}/>
     <HalfPopUp isOpen={showPopup} data={popupData} onClose={closePopup} />
 
+
     <div class="opsiLaporan">
 <MenuLaporan head="Harian" link="/laporan/harian"/>
 <MenuLaporan head="Kesehatan Anak" link="/laporan/kesehatan_anak"/>
