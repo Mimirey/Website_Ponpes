@@ -1,4 +1,5 @@
 <script>
+  
   export let laporan =[];
 
   function formatNote(note) {
@@ -10,7 +11,7 @@
 </script>
 
 <div class="detailLaporan">
-  {#if laporan.length > 0}
+  {#if Array.isArray(laporan) && laporan.length > 0}
     {#each laporan as item (item.SH_ID)}
       <div class="laporan-block">
         <h2>Laporan Kesehatan</h2>
