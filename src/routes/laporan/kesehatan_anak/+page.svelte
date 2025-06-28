@@ -1,29 +1,39 @@
 <script lang="ts">
-  import FormHealth from '$lib/components/FormHealth.svelte';
+  import HorizontalCalendar from '$lib/components/HorizontalCalendar.svelte';
   import DropdownTime from '$lib/components/DropdownTime.svelte';
+  import FormHealth from '$lib/components/FormHealth.svelte';
   import { writable, derived } from 'svelte/store';
+  import dayjs from 'dayjs';
 
   export let data;
 
+  const selectedDate = writable(dayjs(data.selectedDate));
   const selectedTime = writable('');
+  const detailLaporan = writable(data.detail);
 
-  const filteredLaporan = derived(selectedTime, ($selectedTime) => {
-    if (!$selectedTime) return null;
+  // Format string tanggal
+  const selectedDateStr = derived(selectedDate, (d) => d.format('YYYY-MM-DD'));
 
-    // cari hanya 1 data berdasarkan SH_TIME
-    return data.detail.filter((item) => item.SH_TIME === $selectedTime);
-  });
+  const filteredLaporan = derived(
+    [detailLaporan, selectedDateStr, selectedTime],
+    ([$detail, $date, $time]) =>
+      $detail.filter(item => item.SH_DATE === $date && item.SH_TIME === $time)
+  );
 
-  console.log('🔍 Semua waktu tersedia:', data.detail.map((d) => d.SH_TIME));
+  function onTanggalChange(e) {
+    selectedDate.set(dayjs(e.detail));
+  }
 
+  function onTimeChange(e) {
+    selectedTime.set(e.detail);
+  }
 </script>
 
-<DropdownTime on:change={(e) => selectedTime.set(e.detail)} />
+<HorizontalCalendar initialDate={data.selectedDate} on:change={onTanggalChange} />
+<DropdownTime on:change={onTimeChange} />
 
-{#if $filteredLaporan}
-
-    <FormHealth laporan={$filteredLaporan} />
-
+{#if $filteredLaporan.length}
+  <FormHealth laporan={$filteredLaporan} />
 {:else}
   <p class="text-sm text-gray-500 mt-4">Tidak ada laporan tersedia.</p>
 {/if}
