@@ -14,9 +14,16 @@ export async function load({ cookies, fetch }) {
 	});
 
 	const data = await res.json();
+
 	if (data.STATUS !== 'SUCCESS') {
 		throw redirect(302, '/login');
+
+		
 	}
+
+	cookies.set('S_ID', data.PAYLOAD.id.toString(), {
+		path: '/', // biar bisa dibaca di semua route
+		});
 
 	return {
 		user: data.PAYLOAD

@@ -1,42 +1,29 @@
-<script  lang="ts">
-import FormHealth from '$lib/components/FormHealth.svelte';
- import { writable, derived } from 'svelte/store';
-  import { format } from 'date-fns';
-  import { CalendarIcon } from 'lucide-svelte';
-  import { Popover, PopoverTrigger, PopoverContent } from '$lib/components/popover';
-  import Calendar from '$lib/components/calendar/calendar.svelte';
-
-  
+<script lang="ts">
+  import FormHealth from '$lib/components/FormHealth.svelte';
+  import DropdownTime from '$lib/components/DropdownTime.svelte';
+  import { writable, derived } from 'svelte/store';
 
   export let data;
-  const selectedDate = writable<Date | undefined>();
 
-  const filteredLaporan = derived([selectedDate], ([$selectedDate]) => {
-    if (!$selectedDate) return data.detail;
-    const formatted = format($selectedDate, 'yyyy-MM-dd');
-    return data.detail.filter((item) => item.SH_DATE === formatted);
+  const selectedTime = writable('');
+
+  const filteredLaporan = derived(selectedTime, ($selectedTime) => {
+    if (!$selectedTime) return null;
+
+    // cari hanya 1 data berdasarkan SH_TIME
+    return data.detail.filter((item) => item.SH_TIME === $selectedTime);
   });
 
+  console.log('🔍 Semua waktu tersedia:', data.detail.map((d) => d.SH_TIME));
 
-  const laporan = data.detail;
 </script>
 
-<Popover>
-  <PopoverTrigger class="flex items-center space-x-2 px-3 py-2 border rounded-md text-sm text-muted-foreground">
-    <CalendarIcon class="h-4 w-4" />
-    {#if $selectedDate}
-      <span>{format($selectedDate, 'PPP')}</span>
-    {:else} 
-      <span>Pilih tanggal</span>
-    {/if}
-  </PopoverTrigger>
-  <PopoverContent class="w-auto p-0"  portalProps={{}}>
-    <Calendar mode="single" selected={$selectedDate} on:select={(e) => selectedDate.set(e.detail)} initialFocus />
-  </PopoverContent>
-</Popover>
+<DropdownTime on:change={(e) => selectedTime.set(e.detail)} />
 
-<!-- Ini list laporan hasil filter -->
-{#each $filteredLaporan as laporanItem}
-  <FormHealth laporan={laporanItem} />
-{/each}
-<FormHealth laporan={laporan} />
+{#if $filteredLaporan}
+
+    <FormHealth laporan={$filteredLaporan} />
+
+{:else}
+  <p class="text-sm text-gray-500 mt-4">Tidak ada laporan tersedia.</p>
+{/if}

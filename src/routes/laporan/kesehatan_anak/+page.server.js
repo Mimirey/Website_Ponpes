@@ -1,48 +1,43 @@
-export const prerender = false; 
+export const prerender = false;
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url, cookies, fetch }) {
+export async function load({ cookies, fetch, url }) {
   const token = cookies.get('token');
-  const userRaw = cookies.get('user');
 
-  if (!token || !userRaw) {
-    return { error: 'Belum login atau data user tidak ditemukan.' };
+  if (!token) {
+    return { error: 'Token tidak ditemukan. Silakan login ulang.' };
   }
 
-  const user = JSON.parse(userRaw);
+  const resUser = await fetch(import.meta.env.VITE_API_SERVER_URL + '/users', {
+    headers: {
+      'Talentaku-token': token
+    }
+  });
 
-  const s_id = user.id;
-//   const s_id = url.searchParams.get('S_ID') ?? user.id; 
-  // const date = url.searchParams.get('date');
-  // const time = url.searchParams.get('time');
+  const userData = await resUser.json();
 
-  
-  console.log('➡️ S_ID:', s_id);
-  // console.log('➡️ Date:', date);
-  // console.log('➡️ Time:', time);
+  if (userData.STATUS !== 'SUCCESS') {
+    return { error: 'Gagal mengambil data user dari /users' };
+  }
 
-  // if (!s_id || !date || !time) {
-  //   return { error: 'Parameter tidak lengkap.' };
-  // }
 
-  const res = await fetch(`https://admin.al-achsaniyyah.id/api/student-health?S_ID=118`, {
+  const s_id = userData.PAYLOAD.S_ID;
+  console.log('🔍 S_ID yang digunakan:', s_id);
+
+   const res = await fetch(`https://admin.al-achsaniyyah.id/api/student-health?S_ID=${s_id}`, {
     headers: {
       'Talentaku-token': token,
     }
   });
 
   const json = await res.json();
-   const payload = json.PAYLOAD ?? [];
+  const detail = json.PAYLOAD ?? [];
 
-//    console.log('📦 Payload length:', payload.length);
-//   console.log('📦 Payload data:', JSON.stringify(payload, null, 2));
-const detail = json.PAYLOAD ?? [];
-// const detail = payload.filter(
-//   item => item.SH_TIME?.toUpperCase() === time && item.SH_DATE === date
-// );
-console.log('✅ Detail ditemukan:', detail);
+  console.log('🔍 S_ID yang digunakan:', s_id);
+  console.log('✅ Semua detail laporan:', detail.length);
 
   return {
-    detail, 
+    detail,
+    s_id
   };
 }
