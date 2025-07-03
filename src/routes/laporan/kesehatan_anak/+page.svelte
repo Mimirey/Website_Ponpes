@@ -29,8 +29,14 @@
   }
 </script>
 
-<HorizontalCalendar initialDate={data.selectedDate} on:change={onTanggalChange} />
-<DropdownTime on:change={onTimeChange} />
+
+  <DropdownTime on:change={onTimeChange} />
+
+<div class="mt-15 mb-15">
+  <HorizontalCalendar initialDate={data.selectedDate} on:change={onTanggalChange} />
+</div>
+
+
 
 {#if $filteredLaporan.length}
   <FormHealth laporan={$filteredLaporan} />
