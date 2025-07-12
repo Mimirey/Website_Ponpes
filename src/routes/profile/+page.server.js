@@ -21,8 +21,8 @@ export async function load({ cookies, fetch }) {
 		
 	}
 
-	cookies.set('S_ID', data.PAYLOAD.id.toString(), {
-		path: '/', // biar bisa dibaca di semua route
+	cookies.set('S_ID', data.PAYLOAD.S_ID.toString(), {
+		path: '/', 
 		});
 
 	return {
