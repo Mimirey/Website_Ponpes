@@ -11,7 +11,6 @@
   const selectedTime = writable('');
   const detailLaporan = writable(data.detail);
 
-  // Format string tanggal
   const selectedDateStr = derived(selectedDate, (d) => d.format('YYYY-MM-DD'));
 
   const filteredLaporan = derived(
@@ -39,7 +38,9 @@
 
 
 {#if $filteredLaporan.length}
-  <FormHealth laporan={$filteredLaporan} />
+<div class="mb-15">
+   <FormHealth laporan={$filteredLaporan} />
+</div>
 {:else}
   <p class="text-sm text-gray-500 mt-4">Tidak ada laporan tersedia.</p>
 {/if}

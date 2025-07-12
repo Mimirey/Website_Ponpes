@@ -7,10 +7,11 @@
 </script>
 
 <div class="profil">
-<img src={user.U_IMAGE_PROFILE} 
+<img 
+src={user.U_IMAGE_PROFILE && user.U_IMAGE_PROFILE.trim() !== '' ? user.U_IMAGE_PROFILE : '/images/default-profile.jpeg'} 
 alt="profile" 
 width="100px"
-style="border-radius: 100px; ">
+style="border-radius: 100px;"/>
 <h3>{user.U_NAME}</h3>
 
 <FormProfil head="Email" info={user.U_EMAIL}/>
