@@ -33,28 +33,33 @@
   const hari = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 </script>
 
-<div class="w-full space-y-2">
-  <!-- Header Bulan -->
-  <div class="flex justify-between items-center px-2">
-    <button on:click={prevWeek}>&larr;</button>
-    <h2 class="text-sm font-semibold text-center">{startOfWeek.format('MMMM YYYY')}</h2>
-    <button on:click={nextWeek}>&rarr;</button>
+<div class="w-full max-w-md mx-auto space-y-3">
+  <div class="flex justify-between items-center px-4">
+    <button on:click={prevWeek} class="text-gray-600 hover:text-gray-800 text-xl">&larr;</button>
+    <h2 class="text-sm font-semibold text-gray-700">{startOfWeek.format('MMMM YYYY')}</h2>
+    <button on:click={nextWeek} class="text-gray-600 hover:text-gray-800 text-xl">&rarr;</button>
   </div>
 
-  <!-- Label Hari -->
-  <div class="flex justify-between px-2 text-xs font-medium text-gray-500">
+
+  <div class="grid grid-cols-7 px-4 text-xs font-medium text-center text-gray-500">
     {#each hari as h}
-      <div class="w-10 text-center">{h}</div>
+      <div>{h}</div>
     {/each}
   </div>
 
-  <!-- Baris Tanggal -->
-  <div class="flex justify-between px-2">
-{#each Array(7) as _, i}
-  {@const tanggal = startOfWeek.clone().add(i, 'day')}
-  <button on:click={() => pilihTanggal(tanggal)}>
-    {tanggal.date()}
-  </button>
-{/each}
+
+  <div class="grid grid-cols-7 gap-1 px-4">
+    {#each Array(7) as _, i}
+      {@const tanggal = startOfWeek.clone().add(i, 'day')}
+      <button
+        class={`w-full h-10 flex items-center justify-center rounded-lg
+                text-sm transition-all
+                ${tanggal.isSame(selected, 'day') 
+                    ? 'bg-green-600 text-white font-semibold'
+                    : 'bg-gray-100 hover:bg-green-100 text-gray-700'}`}
+        on:click={() => pilihTanggal(tanggal)}>
+        {tanggal.date()}
+      </button>
+    {/each}
   </div>
 </div>
