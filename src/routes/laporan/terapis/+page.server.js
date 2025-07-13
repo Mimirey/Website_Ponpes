@@ -7,7 +7,7 @@ export async function load({cookies,fetch,url}){
 
     const resUser= await fetch(import.meta.env.VITE_API_SERVER_URL + '/users',{
         headers:{
-            'Taletaku-token':token
+            'Talentaku-token':token
         }
     });
 

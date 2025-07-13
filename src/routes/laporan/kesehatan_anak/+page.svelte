@@ -29,12 +29,16 @@
 </script>
 
 
-  <DropdownTime on:change={onTimeChange} />
 
-<div class="mt-15 mb-15">
+
+<div class="bg-white p-4 rounded-xl shadow-md space-y-4 mt-6">
+
+  
   <HorizontalCalendar initialDate={data.selectedDate} on:change={onTanggalChange} />
+  <div class="flex justify-end">
+    <DropdownTime on:change={onTimeChange} />
+  </div>
 </div>
-
 
 
 {#if $filteredLaporan.length}
