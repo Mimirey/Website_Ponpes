@@ -12,7 +12,7 @@ export async function load({ params, fetch, cookies }) {
 	const parentId = user.id;
 	const srId = params.SR_ID;
 
-	const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/student-report?parentId=118`, {
+	const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/student-report?parentId=${parentId}`, {
 		headers: {
 			'Talentaku-token': token
 		}

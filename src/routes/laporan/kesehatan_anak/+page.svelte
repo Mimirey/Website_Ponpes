@@ -28,9 +28,6 @@
   }
 </script>
 
-
-
-
 <div class="bg-white p-4 rounded-xl shadow-md space-y-4 mt-6">
 
   
@@ -43,7 +40,7 @@
 
 {#if $filteredLaporan.length}
 <div class="mb-15">
-   <FormHealth laporan={$filteredLaporan} />
+   <FormHealth laporan={$filteredLaporan} studentName={data.studentName} />
 </div>
 {:else}
   <p class="text-sm text-gray-500 mt-4">Tidak ada laporan tersedia.</p>

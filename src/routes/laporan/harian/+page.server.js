@@ -13,7 +13,7 @@ export async function load ({cookies,fetch}){
     const user = JSON.parse(userCookie);
 	const parentId = user.id;
 
-    const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/student-report?parentId=118`, {
+    const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/student-report?parentId=${parentId}`, {
 			headers: {
 				'Talentaku-token': token,
 			
@@ -28,6 +28,8 @@ export async function load ({cookies,fetch}){
 
 		const data = await res.json();
 		const reports = data.PAYLOAD ?? [];
+
+		console.log('INI LIHAT PARENTID yang digunakan', parentId);
 
 		return {
 			reports
