@@ -17,8 +17,6 @@ export async function load({ cookies, fetch }) {
 
 	if (data.STATUS !== 'SUCCESS') {
 		throw redirect(302, '/login');
-
-		
 	}
 
 	cookies.set('S_ID', data.PAYLOAD.S_ID.toString(), {

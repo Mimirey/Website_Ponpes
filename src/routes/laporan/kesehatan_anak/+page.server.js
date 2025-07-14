@@ -20,7 +20,7 @@ export async function load({ cookies, fetch, url }) {
     return { error: 'Gagal mengambil data user dari /users' };
   }
 
-
+  const studentName= userData.PAYLOAD.STUDENT_NAME;
   const s_id = userData.PAYLOAD.S_ID;
   console.log('🔍 S_ID yang digunakan:', s_id);
 
@@ -38,6 +38,7 @@ export async function load({ cookies, fetch, url }) {
 
   return {
     detail,
-    s_id
+    s_id,
+    studentName
   };
 }

@@ -6,17 +6,23 @@
     const user= data.user;
 </script>
 
-<div class="profil">
-<img 
-src={user.U_IMAGE_PROFILE && user.U_IMAGE_PROFILE.trim() !== '' ? user.U_IMAGE_PROFILE : '/images/default-profile.jpeg'} 
-alt="profile" 
-width="100px"
-style="border-radius: 100px;"/>
-<h3>{user.U_NAME}</h3>
+<div class="profil max-w-md mx-auto p-6 bg-white rounded-xl shadow-md text-center space-y-4">
+  <img
+    src={user.U_IMAGE_PROFILE}
+    alt="profile"
+    class="w-24 h-24 mx-auto rounded-full object-cover border border-gray-300"
+    on:error={() => user.U_IMAGE_PROFILE = '/images/default-profile.jpeg'}
+  />
 
-<FormProfil head="Email" info={user.U_EMAIL}/>
-<FormProfil head="Alamat" info={user.U_ADDRESS}/>
-<FormProfil head="Nomor Telepon" info={user.U_PHONE}/>
+  <h2 class="text-xl font-semibold text-gray-800">{user.U_NAME}</h2>
 
-<Button name="Log Out"/>
+  <div class="space-y-2">
+    <FormProfil head="Email" info={user.U_EMAIL} />
+    <FormProfil head="Alamat" info={user.U_ADDRESS} />
+    <FormProfil head="Nomor Telepon" info={user.U_PHONE} />
+  </div>
+
+  <div class="pt-4">
+    <Button name="Log Out" />
+  </div>
 </div>
