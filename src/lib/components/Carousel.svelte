@@ -46,7 +46,9 @@
   	tabindex="0">
 
 		{#if items.length > 0}
-			<img src={items[currentIndex].IMAGE_URL} alt="gambar" />
+			<img src={items[currentIndex].IMAGE_URL} 
+			alt="gambar"
+			on:error={()=> items[currentIndex].IMAGE_URL= '/images/broken-image.png'} />
 
 			<div class="overlay-text">
 				<h2>{items[currentIndex].TITLE}</h2>

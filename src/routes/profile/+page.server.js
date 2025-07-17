@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
+
 export async function load({ cookies, fetch }) {
 	const token = cookies.get('token');
 
@@ -27,3 +28,5 @@ export async function load({ cookies, fetch }) {
 		user: data.PAYLOAD
 	};
 }
+
+

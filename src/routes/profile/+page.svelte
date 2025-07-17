@@ -1,10 +1,14 @@
 <script>
     import FormProfil from "$lib/components/FormProfil.svelte";
-    import Button from "$lib/components/Button.svelte";
+    import LogoutButton from "$lib/components/LogoutButton.svelte";
 
     export let data;
     const user= data.user;
 </script>
+
+<div class="bg-[#3CB371] text-white px-6 py-6 flex items-center gap-2 shadow-md ">
+  <h1 class="text-lg font-semibold">Profil</h1>
+</div>
 
 <div class="profil max-w-md mx-auto p-6 bg-white rounded-xl shadow-md text-center space-y-4">
   <img
@@ -23,6 +27,6 @@
   </div>
 
   <div class="pt-4">
-    <Button name="Log Out" />
+    <LogoutButton />
   </div>
 </div>

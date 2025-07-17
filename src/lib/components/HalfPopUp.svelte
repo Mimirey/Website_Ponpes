@@ -16,7 +16,11 @@
       <button class="close-btn" on:click={onClose}>×</button>
 
       {#if data}
-        <h2>{data.TITLE}</h2>
+        <img
+        src={data.IMAGE_URL}
+        on:error={()=> data.IMAGE_URL ="/images/broken-image.png"}/>
+
+        <h1>{data.TITLE}</h1>
         <p>{data.CONTENT}</p>
       {:else}
         <p>Memuat pengumuman...</p>
