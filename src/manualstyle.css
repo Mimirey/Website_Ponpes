@@ -200,52 +200,6 @@ button:hover {
   gap: 1rem;
 }
 
-.menu {
-  background-color: #94c297;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 90%;
-  max-width: 6400px;
-  margin: auto;
-  padding: 1rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.menu:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-}
-
-.menu img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-.menuItem h2 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #fff;
-}
-
-.menuItem a {
-  color: #f0f0f0;
-  text-decoration: underline;
-  font-size: 0.95rem;
-  transition: color 0.3s;
-}
-
-.menuItem a:hover {
-  color: #003e1f;
-  font-weight: bold;
-}
-
 /* ========== RESPONSIVE FOR IOS ========== */
 @media screen and (max-width: 480px) {
   .carousel-item img {
@@ -318,7 +272,7 @@ nav{
 
     display: flex; 
     gap:1rem; 
-    background:#2b7a30; 
+    background:#fff; 
     padding:20px;
     height: 75px;
     align-items: center;
@@ -326,12 +280,23 @@ nav{
     justify-content: center;
 }
 nav a{
-    color: #f9f9f9;
+    color: #555555;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 1rem;
+}
+
+nav a.is-active {
+	color: #23740a; /* atau warna yang kamu suka */
+	font-weight: bold;
+	border-bottom: 3.5px solid #67e52c;
+}
+nav a.is-active svg{
+  fill: #1A6520;
+  transform: scale(1.1);
+	transition: fill 0.2s ease, transform 0.2s ease;
 }
 
 /* REPORTS */
@@ -405,7 +370,7 @@ nav a{
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
-  align-items: flex-end; /* buat muncul dari bawah */
+  align-items: flex-end; 
   justify-content: center;
   z-index: 9999;
 }
@@ -413,10 +378,10 @@ nav a{
 .popup {
   background: white;
   width: 100%;
-  max-height: 60vh; /* ⬅️ ini tinggi maksimal popup (setengah layar lebih) */
+  max-height: 100vh; 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 1.5rem;
-  overflow-y: auto; /* ⬅️ biar scrollable kalau kontennya panjang */
+  overflow-y: auto; 
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
 }

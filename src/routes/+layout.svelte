@@ -5,7 +5,7 @@
      import { page } from '$app/stores';
 </script>
 
-<Toaster/>
+<Toaster position="top-center" toastOptions={{ className: 'my-toast' }} />
 
 <slot />
 {#if $page.url.pathname !== '/login'}

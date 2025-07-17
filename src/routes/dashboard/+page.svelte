@@ -18,6 +18,10 @@
     }
 </script>
 
+  <div class="bg-[#3CB371] text-white px-6 py-6 flex items-center gap-2 shadow-md ">
+    <h1 class="text-lg font-semibold">Selamat datang</h1>
+  </div>
+
     <Carousel items={data.announcements} on:itemClick={openPopup}/>
     <HalfPopUp isOpen={showPopup} data={popupData} onClose={closePopup} />
 

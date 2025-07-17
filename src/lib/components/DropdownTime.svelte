@@ -1,8 +1,11 @@
 <script lang="ts">
     import {createEventDispatcher} from 'svelte';
+    import { onMount } from 'svelte';
+
+
 
     const dispatch= createEventDispatcher();
-    let selectedTime: string = '';
+    let selectedTime: string = 'PAGI';
 
     const option= ['PAGI', 'SIANG', 'MALAM'];
 
@@ -10,6 +13,9 @@
         selectedTime =(event.target as HTMLSelectElement).value;
         dispatch('change',selectedTime);
     }
+    onMount(() => {
+	dispatch('change', selectedTime);
+});
 
 </script>
 

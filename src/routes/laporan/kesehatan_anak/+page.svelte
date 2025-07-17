@@ -4,6 +4,7 @@
   import FormHealth from '$lib/components/FormHealth.svelte';
   import { writable, derived } from 'svelte/store';
   import dayjs from 'dayjs';
+	import { AlertCircle } from 'lucide-svelte';
 
   export let data;
 
@@ -28,6 +29,10 @@
   }
 </script>
 
+<div class="bg-[#3CB371] text-white px-6 py-6 flex items-center gap-2 shadow-md ">
+  <h1 class="text-lg font-semibold">Daftar Laporan Kesehatan Anak</h1>
+</div>
+
 <div class="bg-white p-4 rounded-xl shadow-md space-y-4 mt-6">
 
   
@@ -43,5 +48,14 @@
    <FormHealth laporan={$filteredLaporan} studentName={data.studentName} />
 </div>
 {:else}
-  <p class="text-sm text-gray-500 mt-4">Tidak ada laporan tersedia.</p>
+  <div class="flex flex-col h-[calc(70vh-64px)]">
+  <div class="p-4 space-y-4 overflow-y-auto flex-1">
+    <div class="flex items-center justify-center min-h-full">
+      <div class="flex flex-col items-center justify-center text-gray-600 space-y-2">
+        <AlertCircle class="w-10 h-10 text-yellow-500" />
+        <span>Tidak ada laporan yang perlu ditunjukkan</span>
+      </div>
+    </div>
+  </div>
+</div>
 {/if}
