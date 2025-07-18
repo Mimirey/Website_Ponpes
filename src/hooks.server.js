@@ -3,6 +3,10 @@ import { redirect } from '@sveltejs/kit';
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
 	let token = event.cookies.get('token');
+	if (event.url.pathname.startsWith('/login')) {
+		const response = await resolve(event);
+		return response;
+	}
 	if (event.url.pathname.startsWith('/')) {
 		if (!token) {
 			return new Response(null, {
@@ -23,7 +27,7 @@ export async function handle({ event, resolve }) {
 			event.cookies.getAll().forEach((cookie) => {
 				event.cookies.delete(cookie.name, { path: '/' });
 			});
-			throw redirect(307, '/');
+			throw redirect(307, '/login');
 		}
 	}
 	const response = await resolve(event);
