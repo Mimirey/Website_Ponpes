@@ -32,6 +32,7 @@ body {
   padding: 1rem;
   min-height: 100vh;
   text-align: center;
+  
 }
 
 .login-page h1{
@@ -45,6 +46,7 @@ body {
   width: 100%;
   max-width: 400px;
   background-color: white;
+  
 }
 
 form {
