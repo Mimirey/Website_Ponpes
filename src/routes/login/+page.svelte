@@ -17,7 +17,9 @@
     
     <h2>Selamat Datang</h2>
     <p>Semangat buat hari ini ya..</p>
-    <LoginForm {form} enhance={enhance} />
+      <LoginForm {form} enhance={enhance}/>
+    
+    
   </div>
 </div>
 
