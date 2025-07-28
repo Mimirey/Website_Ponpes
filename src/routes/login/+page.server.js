@@ -34,7 +34,7 @@ export const actions = {
 					path: '/',
 					httpOnly: true,
 					sameSite: 'lax',
-					secure: false,
+					secure: import.meta.env.VITE_APPHTTPS === 'true' ? true : false,
 					maxAge: 60 * 60 * 24
 				});
 
@@ -47,7 +47,8 @@ export const actions = {
 					}),
 					{
 						path: '/',
-						httpOnly: false
+						httpOnly: false,
+						secure: import.meta.env.VITE_APPHTTPS === 'true' ? true : false,
 					}
 				);
 
