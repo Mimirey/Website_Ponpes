@@ -8,12 +8,6 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo "Starting deployment..."
-# check docker compose
-if ! command -v "docker" &> /dev/null; then
-    echo "docker compose could not be found. Please install Docker Compose."
-    exit 1
-fi
-
 cp .env.example .env
 
 echo "starting docker compose build..."
