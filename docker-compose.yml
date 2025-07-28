@@ -1,0 +1,17 @@
+services:
+  webponpes:
+    image: node:lts-alpine
+    container_name: webponpes
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "node build/index.js"
+    restart: unless-stopped
+    networks:
+      - webponpes_network
+
+networks:
+  webponpes_network:
+    driver: bridge
