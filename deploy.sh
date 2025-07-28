@@ -8,8 +8,6 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 echo "Starting deployment..."
-cp .env.example .env
-
 echo "starting docker compose build..."
 
 #build the docker compose
@@ -22,19 +20,6 @@ fi
 echo "Docker compose build completed successfully."
 
 echo "Starting the application..."
-
-# npm install
-docker run --rm -v "$(pwd)":/app -w /app node:lts-alpine npm install
-if [ $? -ne 0 ]; then
-    echo "npm install failed. Please check your Node.js setup."
-    exit 1
-fi
-# npm run build
-docker run --rm -v "$(pwd)":/app -w /app node:lts-alpine npm run build
-if [ $? -ne 0 ]; then
-    echo "npm run build failed. Please check your build scripts."
-    exit 1
-fi
 # start the docker compose
 docker compose up -d
 if [ $? -ne 0 ]; then
@@ -42,4 +27,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-docker compose ps
+docker compose logs
