@@ -35,7 +35,7 @@ export const actions = {
 					httpOnly: true,
 					sameSite: 'lax',
 					secure: import.meta.env.VITE_APPHTTPS === 'true' ? true : false,
-					maxAge: 60 * 60 * 24
+					
 				});
 
 				cookies.set(
