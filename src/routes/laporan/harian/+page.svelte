@@ -22,7 +22,7 @@
 
 function onTanggalChange(e) {
     selectedDate.set(dayjs(e.detail));
-  	}
+}
 </script>
 
 <div class="bg-[#3CB371] text-white px-6 py-6 flex items-center gap-2 shadow-md ">
@@ -51,7 +51,7 @@ function onTanggalChange(e) {
 	<div class="space-y-4 mt-4">
 		{#each $filteredReports as report}
 			<a
-			href={`/laporan/${report.SR_ID}`}
+			href={`/laporan/sr/${report.SR_ID}`}
 			class="block p-4 bg-green-100 rounded-xl shadow hover:bg-green-200 transition"
 			>
 			<p class="font-semibold">{report.SR_TITLE}</p>
