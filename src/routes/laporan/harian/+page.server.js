@@ -33,5 +33,6 @@ export async function load ({cookies,fetch}){
 
 		return {
 			reports
+  			
 		};
 }

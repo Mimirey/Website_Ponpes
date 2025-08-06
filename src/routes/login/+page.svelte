@@ -12,11 +12,11 @@
 <div class="login-page">
   <img src="/images/logoPonpes.png" alt="logo" class="logo">
 
-  <h1>Al-Achsaniyyah Parent App</h1>
+  <h1 class="mb-5">Al-Achsaniyyah Parent App</h1>
   <div class="login-content">
     
-    <h2>Selamat Datang</h2>
-    <p>Semangat buat hari ini ya..</p>
+    <h2 class="text-xl font-bold">Selamat Datang</h2>
+    <p class="mb-4 mt-2">Semangat buat hari ini ya..</p>
       <LoginForm {form} enhance={enhance}/>
     
     
