@@ -11,7 +11,8 @@ export const actions = {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Accept: 'application/json'
+					Accept: 'application/json',
+					parent: 'true'
 				},
 				body: JSON.stringify({
 					U_NAME: username,
@@ -26,6 +27,9 @@ export const actions = {
 			}
 
 			const data = await res.json();
+			const webProtocol = import.meta.env.VITE_WEB_PROTOCOL ?? 'http';
+			console.log('Web Protocol:', webProtocol);
+			let isSecure = webProtocol === 'https' ? true : false;
 
 			if (data.STATUS === 'SUCCESS') {
 				const user = data.PAYLOAD.USER;
@@ -34,7 +38,8 @@ export const actions = {
 					path: '/',
 					httpOnly: true,
 					sameSite: 'lax',
-					secure: import.meta.env.VITE_APPHTTPS === 'true' ? true : false,
+					secure: isSecure,
+					maxAge: 60 * 60 * 24 * 2
 					
 				});
 
@@ -48,7 +53,8 @@ export const actions = {
 					{
 						path: '/',
 						httpOnly: false,
-						secure: import.meta.env.VITE_APPHTTPS === 'true' ? true : false,
+						secure: isSecure,
+						maxAge: 60 * 60 * 24 * 2
 					}
 				);
 

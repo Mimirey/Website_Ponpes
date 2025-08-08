@@ -21,9 +21,9 @@ export async function load({ cookies, fetch }) {
 	}
 
 	cookies.set('S_ID', data.PAYLOAD.S_ID.toString(), {
-		path: '/', 
-		secure: import.meta.env.VITE_APPHTTPS === 'true' ? true : false,
-		httpOnly: false,
+		path: '/',
+		secure: (import.meta.env.VITE_WEB_PROTOCOL ?? 'http') === 'https',
+		maxAge: 60 * 60 * 24 * 2 
 		});
 
 	return {
